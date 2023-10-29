@@ -16,9 +16,20 @@ public class PlayerAttack : MonoBehaviour
     {
         
     }
-
-    private void Attack(int damage)
+    private void OnTriggerStay(Collider other)
     {
+        
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            if (other.gameObject.GetComponentInParent<Enemy>())
+            {
+                Attack(other.gameObject);
+            }
+        }
+    }
 
+    private void Attack(GameObject enemy)
+    {
+        Destroy(enemy.gameObject);
     }
 }
