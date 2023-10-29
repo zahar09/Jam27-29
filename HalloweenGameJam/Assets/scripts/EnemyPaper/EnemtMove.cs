@@ -8,10 +8,22 @@ public class EnemtMove : MonoBehaviour
     public float speed = 2f;
     private int currentPatrolPointIndex = 0;
     [SerializeField] private bool _isActive = true;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float attractiveSpeed;
 
+    private bool IsMovingToPlayer;
 
+    private void Start()
+    {
+        IsMovingToPlayer = false;
+        EventManager.PaperHit += OnHit;
+    }
     private void Update()
     {
+        if (IsMovingToPlayer)
+        {
+            transform.position = Vector3.Lerp(gameObject.transform.position, player.transform.position, Time.deltaTime * attractiveSpeed);
+        }
         EnemyTrigger.ActivateTriggerEnemyPaper.AddListener(InRange);
         Patrol();
     }
@@ -42,5 +54,12 @@ public class EnemtMove : MonoBehaviour
     private void InRange()
     {
         _isActive = false;
+    }
+
+    private void OnHit()
+    {
+        gameObject.gameObject.GetComponentInChildren<FrowBullet>().Shoot();
+        IsMovingToPlayer = true;
+        Debug.Log("hgghghgh");
     }
 }
