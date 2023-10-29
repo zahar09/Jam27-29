@@ -16,7 +16,7 @@ public class SpawnBomb : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(spawnCD());
+        
     }
 
     IEnumerator spawnCD()
@@ -39,5 +39,6 @@ public class SpawnBomb : MonoBehaviour
     private void Yes1()
     {
         _isActive1 = true;
+        StartCoroutine(spawnCD());
     }
 }

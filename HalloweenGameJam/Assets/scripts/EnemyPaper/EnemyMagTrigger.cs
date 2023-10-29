@@ -25,6 +25,7 @@ public class EnemyMagTrigger : MonoBehaviour
         {
             ActivateTriggerEnemyMag.Invoke();
             print("Zarabotalo");
+            
         }
     }
 }

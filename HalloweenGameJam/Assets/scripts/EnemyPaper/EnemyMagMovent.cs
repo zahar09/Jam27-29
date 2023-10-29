@@ -8,6 +8,7 @@ public class EnemyMagMovent : MonoBehaviour
     public float speed = 2f;
     private int currentPatrolPointIndex = 0;
     [SerializeField] private bool _isActive = true;
+    [SerializeField] private Animator _animator;
 
 
     private void Update()
@@ -18,8 +19,9 @@ public class EnemyMagMovent : MonoBehaviour
 
     private void Patrol()
     {
+        
         if (patrolPoints.Count == 0) return;
-
+        
         if (_isActive == true)
         {
             Transform targetPatrolPoint = patrolPoints[currentPatrolPointIndex];
@@ -41,6 +43,7 @@ public class EnemyMagMovent : MonoBehaviour
 
     private void InRange()
     {
+        _animator.SetBool("IsIdle", true);
         _isActive = false;
     }
 }
